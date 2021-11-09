@@ -1,24 +1,20 @@
-import { InjectionKey, reactive, toRefs } from '@vue/composition-api'
-
-interface Todo {
-  id: string
-  isDone: boolean
-  content: string
-}
+import {
+  InjectionKey,
+  onMounted,
+  reactive,
+  toRefs,
+  watch,
+} from '@vue/composition-api'
+import { useLocalStorage } from '@vueuse/core'
 
 export const useTodoState = () => {
   const todoState = reactive({
     todos: new Array(),
   })
 
-  const setTodoState = (stateValue: Todo) => {
-    todoState.todos.push(stateValue)
-    console.log(todoState)
-  }
-
   return {
-    ...toRefs(todoState),
-    setTodoState,
+    // ...toRefs(todoState),
+    todoState,
   }
 }
 
