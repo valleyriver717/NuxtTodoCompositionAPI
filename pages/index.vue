@@ -5,9 +5,17 @@
     <button @click="addTodo">Add</button>
     <div>
       <ul>
-        <li v-for="(todo, index) in todoState.todoState.todos" :key="todo.id">
-          <input @change="toggleTodoIsDone(index)" type="checkbox" />
-          <span>{{ todo.content }} / {{ index }}</span>
+        <li
+          v-for="(todo, index) in todoState.todoState.value.todos"
+          :key="todo.id"
+        >
+          <!-- <input @change="toggleTodoIsDone(index)" type="checkbox" /> -->
+          <input
+            v-bind:checked="isDone(index)"
+            @change="toggleTodoIsDone(index)"
+            type="checkbox"
+          />
+          <span>{{ todo.content }} </span>
           <span @click="deleteTodo(index)">[x]</span>
         </li>
       </ul>
@@ -17,7 +25,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, ref } from '@nuxtjs/composition-api'
+import {
+  defineComponent,
+  inject,
+  onMounted,
+  ref,
+} from '@nuxtjs/composition-api'
 import { TodoStateKey } from '~/composables/useTodoState'
 import { useAddTodo } from '~/composables/useAddTodo'
 import { useDeleteTodo } from '~/composables/useDeleteTodo'
@@ -32,13 +45,14 @@ export default defineComponent({
 
     const { newTodo, addTodo } = useAddTodo()
     const { deleteTodo } = useDeleteTodo()
-    const { toggleTodoIsDone } = useToggleTodoIsDone()
+    const { checkTodoIsDone, toggleTodoIsDone } = useToggleTodoIsDone()
 
     return {
       todoState,
       newTodo,
       addTodo,
       deleteTodo,
+      checkTodoIsDone,
       toggleTodoIsDone,
     }
   },

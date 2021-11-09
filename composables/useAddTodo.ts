@@ -10,7 +10,7 @@ export const useAddTodo = () => {
   const newTodo = ref<string>('')
 
   const addTodo = () => {
-    todoState.todoState.todos.push({
+    todoState.todoState.value.todos.push({
       id: Math.random().toString(32).substring(2),
       isDone: false,
       content: newTodo.value,

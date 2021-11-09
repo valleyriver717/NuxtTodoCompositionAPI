@@ -8,7 +8,7 @@ export const useDeleteTodo = () => {
   }
 
   const deleteTodo = (index: number) => {
-    todoState.todoState.todos.splice(index, 1)
+    todoState.todoState.value.todos.splice(index, 1)
   }
 
   return {

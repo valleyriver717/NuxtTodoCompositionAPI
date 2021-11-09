@@ -8,7 +8,10 @@ import {
 import { useLocalStorage } from '@vueuse/core'
 
 export const useTodoState = () => {
-  const todoState = reactive({
+  // const todoState = reactive({
+  //   todos: new Array(),
+  // })
+  const todoState = useLocalStorage('tlca', {
     todos: new Array(),
   })
 
