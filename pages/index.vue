@@ -9,9 +9,8 @@
           v-for="(todo, index) in todoState.todoState.value.todos"
           :key="todo.id"
         >
-          <!-- <input @change="toggleTodoIsDone(index)" type="checkbox" /> -->
           <input
-            v-bind:checked="isDone(index)"
+            v-bind:checked="checkTodoIsDone(index)"
             @change="toggleTodoIsDone(index)"
             type="checkbox"
           />
@@ -25,12 +24,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  inject,
-  onMounted,
-  ref,
-} from '@nuxtjs/composition-api'
+import { defineComponent, inject } from '@nuxtjs/composition-api'
 import { TodoStateKey } from '~/composables/useTodoState'
 import { useAddTodo } from '~/composables/useAddTodo'
 import { useDeleteTodo } from '~/composables/useDeleteTodo'
